@@ -50,3 +50,10 @@ gcloud eventarc triggers create imageprocessing-image-uploaded-v5  \
 --service-account=trigger-cloud-storage@training-ground-330518.iam.gserviceaccount.com
 ```
 
+
+
+### Potential TODO
+* Add possibility to upload file from website
+* Find a nicer way of refreshing the static page
+* Turn Cloud Run functions into Cloud Functions
+* Use terraform to deploy

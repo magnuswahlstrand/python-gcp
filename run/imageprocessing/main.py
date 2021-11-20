@@ -9,6 +9,7 @@ app = Flask(__name__)
 def index():
     print('received request!')
     message = request.get_json()
+    print(message)
 
     if not message or "bucket" not in message or "name" not in message:
         msg = "invalid cloud storage message"
