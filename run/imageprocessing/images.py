@@ -8,6 +8,7 @@ storage_client = storage.Client()
 
 
 def blur_image(bucket_name: str, filename: str):
+    print(f"new image at {bucket_name}/{filename}")
     if filename.startswith("blurred-"):
         print(f"the image {filename} is already blurred.")
         return
@@ -15,6 +16,7 @@ def blur_image(bucket_name: str, filename: str):
     blob = storage_client.bucket(bucket_name).get_blob(filename)
 
     _, temp_file = tempfile.mkstemp()
+
     blob.download_to_filename(temp_file)
     print(f"image {filename} was downloaded to {temp_file}")
 
