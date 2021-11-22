@@ -7,8 +7,13 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style type="text/css">
         .container {
-            max-width: 500px;
+            max-width: 800px;
             padding-top: 50px;
+        }
+
+        .box {
+            width: 30px;
+            height: 20px;
         }
     </style>
     <meta http-equiv="refresh" content="5">
@@ -20,14 +25,25 @@
     <div class="container">
         {% for image in images %}
         <div class="row">
-            <div class="col">
-                <!-- TODO: This is a pretty hacky way of retrieving the source image name, but it will do for now-->
-                <img src="https://storage.googleapis.com/{{image.bucket.name[:-8]}}-upload/{{image.name[8:]}}"
-                     class="img-thumbnail"/>
+            <div class="col-4">
+                <img src="{{image.url}}" class="img-thumbnail"/>
             </div>
-            <div class="col">
-                <img src="https://storage.googleapis.com/{{image.bucket.name}}/{{image.name}}" class="img-thumbnail"/>
+            <div class="col-4">
+                <img src="{{image.url_blurred}}" class="img-thumbnail"/>
             </div>
+            <div class="col-4">
+                <table class="table-primary">
+                    {% for safe_item in image['safe_search'] %}
+                    <tr>
+                        <td>{{ safe_item[0] }}</td>
+                        <td class="d-inline-block">
+                            {% for c in safe_item[1] %}<div class="box m-1 bg-success float-start">&nbsp</div>{% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <hr>
         </div>
         {% endfor %}
     </div>

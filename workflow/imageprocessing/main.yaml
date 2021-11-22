@@ -1,0 +1,31 @@
+main:
+  params: [ input ]
+  steps:
+    - blurImage:
+        call: http.post
+        args:
+          url: https://imageprocessingpy-quays3hgzq-ew.a.run.app
+          body:
+            bucket: ${input.bucket}
+            name: ${input.name}
+          auth:
+            type: OIDC
+        result: blurImageOutput
+    - labelImage:
+        call: http.post
+        args:
+          url: https://europe-west1-training-ground-330518.cloudfunctions.net/labelimage
+          body:
+            bucket: ${input.bucket}
+            name: ${input.name}
+          auth:
+            type: OIDC
+    - reRenderStaticSite:
+        call: http.post
+        args:
+          url: https://staticsitegeneratorpy-quays3hgzq-ew.a.run.app
+          auth:
+            type: OIDC
+
+    - returnOutput:
+        return: ${blurImageOutput}
