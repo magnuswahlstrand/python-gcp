@@ -46,7 +46,6 @@ def trigger_workflow(project, location, workflow, data):
             backoff_delay = min(60, 2 * backoff_delay)
         else:
             print(f'execution finished with state: {execution.state.name}')
-            print(execution.result)
             return execution.result
 
 

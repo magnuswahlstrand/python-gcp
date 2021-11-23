@@ -1,10 +1,10 @@
 main:
-  params: [ input ]
+  params: [input]
   steps:
     - blurImage:
         call: http.post
         args:
-          url: https://imageprocessingpy-quays3hgzq-ew.a.run.app
+          url: https://blurimagepy-quays3hgzq-ew.a.run.app
           body:
             bucket: ${input.bucket}
             name: ${input.name}
