@@ -5,7 +5,3 @@ __pycache__
 .pytest_cache
 env
 venv
-.venv
-.terraform
-.idea
-
